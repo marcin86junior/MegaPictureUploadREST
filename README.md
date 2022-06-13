@@ -1,7 +1,7 @@
 MegaPictureUploadREST
 ===========
 
-![alt text](https://raw.githubusercontent.com/marcin86junior/MegaPictureUploadREST/main/readme.PNG?token=GHSAT0AAAAAABVRWXB66QZJEJ7OG4VGGAHWYVG477Q)
+![alt text](http://marcin86.pythonanywhere.com/static/MegaUploadpic.PNG)
 
 Requirements:
 
