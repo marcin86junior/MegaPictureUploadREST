@@ -18,7 +18,12 @@ Installation:
 	pip install -r requirements.txt
 	cd django_rest_imageupload_backend\
 	python manage.py migrate
+	python manage.py migrate --run-syncdb
 	python manage.py createsuperuser
+	-> marcin / pass:123
+	-> create groups 3: Basic, Premium and Enterprise
+	-> add tomek / pass: tomektomek
+	-> add tomek to Basic group in admin
 	#python manage.py loaddata eMenu\fixtures\data.json --app eMenu
 	python manage.py runserver 
 
