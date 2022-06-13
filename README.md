@@ -1,7 +1,7 @@
 MegaPictureUploadREST
 ===========
 
-![alt text](https://github.com/marcin86junior/EmenuRESTAPI/blob/main/readme.PNG?raw=true)
+![alt text](https://raw.githubusercontent.com/marcin86junior/MegaPictureUploadREST/main/readme.PNG?token=GHSAT0AAAAAABVRWXB66QZJEJ7OG4VGGAHWYVG477Q)
 
 Requirements:
 
