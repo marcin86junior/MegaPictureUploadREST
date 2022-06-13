@@ -1,4 +1,4 @@
-EmenuRESTAPI 
+MegaPictureUploadREST
 ===========
 
 ![alt text](https://github.com/marcin86junior/EmenuRESTAPI/blob/main/readme.PNG?raw=true)
@@ -6,22 +6,23 @@ EmenuRESTAPI
 Requirements:
 
 	Python 3.8.x
-	Django 3.0.7
+	Django 3.2.12
+	Djangorestframework 3.13.x
 
 Installation:
 
-	Create new folder "EmenuREST" and open it:
-	git clone https://github.com/marcin86junior/EmenuRESTAPI .
+	Create new folder "MegaPictureUploadREST" and open it:
+	git clone https://github.com/marcin86junior/MegaPictureUploadREST.git .
 	python -m venv myvenv
 	.\myvenv\Scripts\activate
 	pip install -r requirements.txt
-	cd myproject\
+	cd django_rest_imageupload_backend\
 	python manage.py migrate
 	python manage.py createsuperuser
-	python  manage.py loaddata eMenu\fixtures\data.json --app eMenu
+	#python manage.py loaddata eMenu\fixtures\data.json --app eMenu
 	python manage.py runserver 
 
-Testing:
+#Testing:
 
 	python manage.py test eMenu
 	coverage run --source='.' --omit='*migrations*,*init*,*wsgi*,*asgi*,*urls*,*manage*,*admin*,*apps*,*settings*,*test*,*seriali*' manage.py test eMenu
@@ -29,13 +30,13 @@ Testing:
 
 Docker:
 
-	Create new folder "EmenuREST" and open it:
-	git clone https://github.com/marcin86junior/EmenuRESTAPI .
+	Create new folder "MegaPictureUploadREST" and open it:
+	git clone https://github.com/marcin86junior/MegaPictureUploadREST.git .
 	cd myproject
 	Open Doker Desktop:
 	docker-compose run web python3 manage.py migrate
-	docker-compose run web python3 manage.py loaddata data.json --app eMenu
+	#docker-compose run web python3 manage.py loaddata data.json --app eMenu
 	Run app:
 	docker-compose up
-	Test:
-	docker-compose run web python3 manage.py test eMenu
+	#Test:
+	#docker-compose run web python3 manage.py test eMenu
