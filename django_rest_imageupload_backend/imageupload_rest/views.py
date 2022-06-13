@@ -32,7 +32,7 @@ class UploadedImagesViewSet(viewsets.ModelViewSet):
         """
         user = self.request.user
         try:
-            return UploadedImage.objects.filter(author=user)
+            return UploadedImage.objects.all()
         except:
             return UploadedImage.objects.none()
 
