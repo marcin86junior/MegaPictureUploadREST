@@ -1,25 +1,18 @@
 from rest_framework import serializers
 from imageupload.models import UploadedImage # Import our UploadedImage model
 
-
-# Serializer for UploadedImage Model
-# serializes pk and image
 class UploadedImageSerializerAdmin(serializers.ModelSerializer):
-
+    """
+    Serializer for the UPloadedImage Model
+    Provides the pk, image, thumbnail, title and description
+    """
     # here we can force-change data
     #author = serializers.CharField(source="owner.author", read_only=True)
-    #author = CurrentUserDefault()
-    #author = serializers.CharField(required=False, source="owner.username", read_only=True)
-    #author = serializers.CharField(read_only=True)
-    #author = serializers.ReadOnlyField(source='owner.this-doesn-t-esits', required=False)
-    #author = serializers.CharField(validate_user, read_only=True)
-
 
     class Meta:
         model = UploadedImage
-        fields = ('pk', 'thumbnail200x200', 'thumbnail400x400', 'title', 'description', 'author')
+        fields = ('pk', 'image', 'thumbnail200x200', 'thumbnail400x400', 'title', 'description', 'author')
         read_only_fields = ('thumbnail200x200','thumbnail400x400', 'author')
-        write_only_fields = ('image')
 
 class UploadedImageSerializerBasic(serializers.ModelSerializer):
     """
@@ -30,7 +23,7 @@ class UploadedImageSerializerBasic(serializers.ModelSerializer):
     class Meta:
         model = UploadedImage
         fields = ('thumbnail200x200', 'title', 'description') #pk out
-        read_only_fields = ('thumbnail200x200', 'author')
+        read_only_fields = ( 'thumbnail200x200', 'author')
         write_only_fields = ('image')
 
 class UploadedImageSerializerPremium(serializers.ModelSerializer):

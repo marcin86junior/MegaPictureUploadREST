@@ -1,6 +1,7 @@
-from django.conf.urls import url, include, path
+from django.urls import path, include
+from . import views
 
 # Wire up our API using automatic URL routing.
 urlpatterns = [
-    #path('', include(router.urls)),
+    path('', views.create_users)
 ]
