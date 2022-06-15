@@ -17,9 +17,10 @@ Installation:
 	.\myvenv\Scripts\activate
 	pip install -r requirements.txt
 	cd django_rest_imageupload_backend\
-	turn off 2 sec. #path('', views.create_users) in imageupload.views
+	-> turn off 2 sec. #path('', views.create_users) in django_rest_imageupload_backend.urls
 	python manage.py migrate
 	python manage.py migrate --run-syncdb
+	-> turn on path('', views.create_users) in django_rest_imageupload_backend.urls.urls
 	python manage.py createsuperuser (marcin/123)
 	python .\manage.py runserver
 	-> Use link below to create users/passwords/groups:
@@ -29,10 +30,11 @@ Installation:
 	p2 (pass:123) --> Premium group
 	e3 (pass:123) --> Enterprice group
 	c4 (pass:123) --> CustomXX500x500 group
-	########python manage.py loaddata eMenu\fixtures\data.json --app eMenu
+	###python manage.py loaddata eMenu\fixtures\data.json --app eMenu
+	-> Create folder "uploaded_media" in main directiory
 	python manage.py runserver 
 
-#Testing:
+###Testing:
 
 	python manage.py test eMenu
 	coverage run --source='.' --omit='*migrations*,*init*,*wsgi*,*asgi*,*urls*,*manage*,*admin*,*apps*,*settings*,*test*,*seriali*' manage.py test eMenu
