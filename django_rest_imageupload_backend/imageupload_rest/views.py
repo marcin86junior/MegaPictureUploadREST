@@ -3,27 +3,28 @@ from django.shortcuts import render
 # Create your views here.
 
 from rest_framework import viewsets, filters
-from imageupload.serializers import UploadedImageSerializer, UploadedImageSerializerBasic # import our serializer
+from imageupload.serializers import UploadedImageSerializerAdmin, UploadedImageSerializerBasic, UploadedImageSerializerPremium, UploadedImageSerializerEnterprise, UploadedImageX
 from imageupload.models import UploadedImage # import our model
 #from django.conf import settings
 #from django.db import models
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import SessionAuthentication
+from django.conf import settings
 
 class UploadedImagesViewSet(viewsets.ModelViewSet):
-    #queryset = UploadedImage.objects.all()
-    #queryset = UploadedImage.objects.filter(author='1')
-    #if User.groups.filter(name='Basic').exists():
-    #queryset = UploadedImage.objects.filter(author=User.objects.get(username='tomek').id)
-
-    #queryset = UploadedImage.objects.filter(author='auth.User.id')
-    #queryset = UploadedImage.objects.filter(author='auth.User')
 
     def get_serializer_class(self):
-        if self.request.user.is_staff:
-            return UploadedImageSerializer
+        #if self.request.user.is_staff:
+        if self.request.user.groups.filter(name="Basic").exists():
+            return UploadedImageSerializerBasic
+        elif self.request.user.groups.filter(name="Premium").exists():
+            return UploadedImageSerializerPremium
+        elif self.request.user.groups.filter(name="Enterprise").exists():
+            return UploadedImageSerializerEnterprise
+        elif self.request.user.is_staff:
+            return UploadedImageSerializerAdmin
             #request.user.groups.all() 
-        return UploadedImageSerializerBasic
-    
-    serializer_class = UploadedImageSerializer
+        return UploadedImageX
     
     def get_queryset(self):
         """
@@ -32,9 +33,13 @@ class UploadedImagesViewSet(viewsets.ModelViewSet):
         """
         user = self.request.user
         try:
-            return UploadedImage.objects.all()
+            return UploadedImage.objects.filter(author=user)
         except:
             return UploadedImage.objects.none()
+    
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
+
 
     #def get_serializer_class(self):
     #    if self.request.user.is_staff:

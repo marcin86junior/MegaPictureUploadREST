@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',  
-    'rest_imageupload_backend',
+    #'rest_imageupload_backend',
     'imageupload_rest',
     'imageupload',
 ]

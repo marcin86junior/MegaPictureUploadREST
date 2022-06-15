@@ -21,9 +21,9 @@ Installation:
 	python manage.py migrate --run-syncdb
 	python manage.py createsuperuser
 	-> marcin / pass:123
-	-> create groups 3: Basic, Premium and Enterprise
-	-> add tomek / pass: tomektomek
-	-> add tomek to Basic group in admin
+	-> create groups 4: Basic, Premium and Enterprise / CustomXX500x500
+	-> create user/pass tomek / tomektomek -> add to Basic group
+	-> create user/pass wojtek / wojtekwojtek -> add to Enterprise group
 	#python manage.py loaddata eMenu\fixtures\data.json --app eMenu
 	python manage.py runserver 
 

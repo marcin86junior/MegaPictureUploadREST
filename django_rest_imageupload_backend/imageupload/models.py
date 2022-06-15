@@ -1,10 +1,14 @@
+from django.db import models
+from django.conf import settings
+from django.utils import timezone
+
+# modules for picture edition
 from cgitb import text
 from unicodedata import name
 import uuid
-from django.db import models
 from PIL import Image
 import os
-from django.conf import settings
+from venv import create
 
 # creates hide-key for name picture
 def scramble_uploaded_filename(instance, filename):
@@ -40,13 +44,25 @@ class UploadedImage(models.Model):
     image = models.ImageField("Uploaded image", upload_to=scramble_uploaded_filename)
     thumbnail200x200 = models.ImageField("Thumbnail of uploaded image", blank=True)
     thumbnail400x400 = models.ImageField("Thumbnail of uploaded image", blank=True)
-    # title and description
     title = models.CharField("Title of the uploaded image", max_length=255, default="Unknown Picture")
     description = models.TextField("Description of the uploaded image", default="")
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
-
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    '''
+    entry_date = models.DateTimeField(default=datetime.now)
+    duration = models.PositiveIntegerField()
+    expiry_date = models.DateField()
+    '''
+    
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         # generate and set thumbnail or none
         self.thumbnail200x200 = create_thumbnail(self.image, (200, 200))
         self.thumbnail400x400 = create_thumbnail(self.image, (400, 400))
         super(UploadedImage, self).save()
+    
+    '''
+    @property
+    def is_expired(self):
+        if datetime.now > self.expiry_date:
+            return True
+        return False
+    '''
