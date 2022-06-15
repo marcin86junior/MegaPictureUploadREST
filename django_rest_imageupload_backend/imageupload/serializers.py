@@ -8,6 +8,7 @@ class UploadedImageSerializerAdmin(serializers.ModelSerializer):
     """
     # here we can force-change data
     #author = serializers.CharField(source="owner.author", read_only=True)
+    
 
     class Meta:
         model = UploadedImage
@@ -23,8 +24,8 @@ class UploadedImageSerializerBasic(serializers.ModelSerializer):
     class Meta:
         model = UploadedImage
         fields = ('thumbnail200x200', 'title', 'description') #pk out
-        read_only_fields = ( 'thumbnail200x200', 'author')
-        write_only_fields = ('image')
+        read_only_fields = ('image' 'thumbnail200x200', 'author')
+        write_only_fields = ()
 
 class UploadedImageSerializerPremium(serializers.ModelSerializer):
     """
