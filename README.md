@@ -33,11 +33,13 @@ Installation:
 	###python manage.py loaddata eMenu\fixtures\data.json --app eMenu
 	python manage.py runserver 
 
-###Testing:
+Testing:
 
-	python manage.py test eMenu
+	python manage.py test imageupload
+	--
 	coverage run --source='.' --omit='*migrations*,*init*,*wsgi*,*asgi*,*urls*,*manage*,*admin*,*apps*,*settings*,*test*,*seriali*' manage.py test eMenu
 	coverage html
+	--
 
 Docker:
 

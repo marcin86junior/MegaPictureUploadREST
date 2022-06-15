@@ -1,40 +1,45 @@
 #python manage.py dumpdata imageupload --indent 4 > data.json
+from pydoc import describe
 from django.test import TestCase
 from django.test import RequestFactory
 from .models import UploadedImage
 from .views import create_users
-
-#from .models import Card, Dish, CardItems
-#from .views import CardView
+from imageupload_rest.views import UploadedImagesViewSet
+from django.contrib.auth.models import User, Group
 
 # Create your tests here.
 
 # models.py
-class CardModelTestCase(TestCase):
-    fixtures = ['data.json']
+class UploadedImageModelTestCase(TestCase):
+    #fixtures = ['data.json']
+
     def setUp(self):
-        Card.objects.create(name="Testowa karta", description="Karta utworzona do testow")
-        Dish.objects.create(name="Danie testowe", description="Danie utowrzone do testów", price='15', preparation_time='15')
-        card = Card.objects.get(name="Testowa karta")
-        dish = Dish.objects.get(name="Danie testowe")
-        CardItems.objects.create(card_id = dish.id, dish_id = dish.id)
+        User.objects.create_user('b1', 'x@x', '123') 
+        login = self.client.login(username='b1', password='123') 
+        self.assertTrue(login) 
+        print(User.objects.get(id='1'))
+        idx = User.objects.get(id='1')
+        UploadedImage.objects.create(image=(''), title='test',description='test', author = idx, duration='30')
+        print(UploadedImage.objects.all())
+        print(UploadedImage.objects.filter(pk='1'))
+    
     def test_card_query(self):
-        card = Card.objects.get(name="Testowa karta")
-        self.assertEqual(card.description, 'Karta utworzona do testow')
+        x= UploadedImage.objects.all()
+        print(x)
 
 # views.py
-class CardListTestCase(TestCase):
-    def test_get(self):
-        request = RequestFactory().get('/lista/')
-        view = CardView.as_view()
-        response = view(request)
-        #print(response)
-        self.assertEqual(response.status_code, 200)
+class ImageListTestCase(TestCase):
     def test_bad_link(self):
         resp = self.client.get('/abcdefghijklmnoprstuwyz')
         self.assertEqual(resp.status_code, 404)
     def test_bad_pk(self):
         resp = self.client.get('api/Card/dsadsada')
         self.assertEqual(resp.status_code, 404)
-
-
+    def test_get(self):
+        request = RequestFactory().get('api/')
+        view = UploadedImagesViewSet(actions={'get': 'get_user_agenda'})
+        print("get('api/ ", request)
+        print("view: ", view)
+        response = view(request)
+        print(response)
+        self.assertEqual(response.status_code, 200)
