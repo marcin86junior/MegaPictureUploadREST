@@ -7,9 +7,9 @@ def create_users(request):
         user, created = User.objects.get_or_create(username=abc)
         user.set_password('123')
         user.save()
-    create_user('Maciej')
-    create_user('Pawel')
-    create_user('Jacek')
+    create_user('tomek')
+    create_user('premium')
+    create_user('enterprice')
 
     def create_group(abc):
         user, created = Group.objects.get_or_create(name=abc)
