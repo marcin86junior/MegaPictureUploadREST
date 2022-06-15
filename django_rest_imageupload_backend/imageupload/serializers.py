@@ -46,9 +46,10 @@ class UploadedImageSerializerEnterprise(serializers.ModelSerializer):
     
     class Meta:
         model = UploadedImage
-        fields = ('pk', 'image', 'thumbnail200x200', 'thumbnail400x400', 'title', 'description')
-        read_only_fields = ('thumbnail200x200',)
-
+        fields = ('pk', 'image', 'thumbnail200x200', 'thumbnail400x400', 'title', 'description', 'author', 'duration', 'create_date', 'expiry_date')
+        read_only_fields = ('thumbnail200x200','thumbnail400x400', 'author', 'create_date', 'expiry_date', 'expiry_link')
+        write_only_fields = ('image')
+    
 class UploadedImageX(serializers.ModelSerializer):
     """
     Serializer for the UPloadedImage Model

@@ -18,4 +18,5 @@ def create_users(request):
     create_group('Premium')
     create_group('Enterprise')
     create_group('CustomXX500x500')
+    #Group.objects.get(name='Premium').user_set.add(User)
     return HttpResponse('Users and groups created: \n Maciej(pass:123) -> Basic group \n Pawel(pass:123) -> Premium group \n Jacek(pass:123) -> Enterprice group')

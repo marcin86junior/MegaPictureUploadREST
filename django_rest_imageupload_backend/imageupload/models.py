@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils.timezone import datetime, timedelta
-
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # modules for picture edition
 from cgitb import text
@@ -50,7 +50,7 @@ class UploadedImage(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     create_date = models.DateTimeField("Created date",default=datetime.now)
-    duration = models.CharField("Link expire time [sek]", max_length=5)
+    duration = models.IntegerField("Link expire time (30-30000 sek)",validators=[MinValueValidator(30), MaxValueValidator(30000)], default='60')
     expiry_link = models.CharField("Link that will expire", max_length=5)
     expiry_date = models.DateTimeField("Expire date", default=datetime.now)
 
