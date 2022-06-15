@@ -19,11 +19,14 @@ Installation:
 	cd django_rest_imageupload_backend\
 	python manage.py migrate
 	python manage.py migrate --run-syncdb
-	python manage.py createsuperuser
-	-> marcin / pass:123
-	-> create groups 4: Basic, Premium and Enterprise / CustomXX500x500
-	-> create user/pass tomek / tomektomek -> add to Basic group
-	-> create user/pass wojtek / wojtekwojtek -> add to Enterprise group
+	python manage.py createsuperuser (marcin/123)
+	Use link below to create users/pass/
+	http://127.0.0.1:8000/setup/  
+	It will create next users and groups:
+	b1 (pass:123) --> Basic group
+	p2 (pass:123) --> Premium group
+	e3 (pass:123) --> Enterprice group
+	c4 (pass:123) --> CustomXX500x500 group
 	#python manage.py loaddata eMenu\fixtures\data.json --app eMenu
 	python manage.py runserver 
 
