@@ -7,7 +7,7 @@ from imageupload.models import UploadedImage # import our model
 
 class UploadedImagesViewSet(viewsets.ModelViewSet):
 
-    # serializer depends from user-group (for admin/staff there is permision for all data change)
+    # serializer depends from user-group (for admin/staff there is permision for all data)
     def get_serializer_class(self):
         if self.request.user.groups.filter(name="Basic").exists():
             return UploadedImageSerializerBasic
@@ -17,7 +17,6 @@ class UploadedImagesViewSet(viewsets.ModelViewSet):
             return UploadedImageSerializerEnterprise
         elif self.request.user.is_staff:
             return UploadedImageSerializerAdmin
-            #request.user.groups.all() 
         return UploadedImageX
     
     # only logged users will get data
@@ -32,7 +31,7 @@ class UploadedImagesViewSet(viewsets.ModelViewSet):
         except:
             return UploadedImage.objects.none()
     
-    # used in 'author' in all serializers
+    # used for all serializers to fill 'author' field
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 

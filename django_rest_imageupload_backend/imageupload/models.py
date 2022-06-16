@@ -12,7 +12,7 @@ from PIL import Image
 import os
 from venv import create
 
-# creates hide-key for name picture
+# creates hidden key-name for name of picture
 def scramble_uploaded_filename(instance, filename):
     extension = filename.split(".")[-1]
     return "{}.{}".format(uuid.uuid4(), extension)
