@@ -49,10 +49,10 @@ Docker:
 	"Open Doker Desktop"
 	docker-compose run web python3 manage.py migrate
 	docker-compose run web python3 python manage.py migrate --run-syncdb
-	docker-compose run web python3 manage.py loaddata group.json --app eMenu
-	docker-compose run web python3 manage.py loaddata users.json --app eMenu
-	docker-compose run web python3 manage.py loaddata data.json --app eMenu
+	docker-compose run web python3 manage.py loaddata group.json
+	docker-compose run web python3 manage.py loaddata users.json
+	docker-compose run web python3 manage.py loaddata data.json
 	Run app:
 	docker-compose up
 	Test:
-	#docker-compose run web python3 manage.py test eMenu
+	docker-compose run web python3 manage.py test
