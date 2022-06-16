@@ -57,8 +57,8 @@ class UploadedImageSerializerCustom(serializers.ModelSerializer):
 
     class Meta:
         model = UploadedImage
-        fields = ('image', 'thumbnail200x200', 'thumbnail400x400', 'title', 'description', 'author', 'duration', 'create_date', 'expiry_date')
-        read_only_fields = ('thumbnail200x200','thumbnail400x400', 'author', 'create_date', 'expiry_date', 'expiry_link')
+        fields = ('image', 'title', 'description', 'author', 'duration', 'create_date', 'expiry_date', 'thumbnail_custom_size', 'thumbnail_custom_image')
+        read_only_fields = ( 'author', 'create_date', 'expiry_date', 'expiry_link', )
         write_only_fields = ('image')
     
 class UploadedImageX(serializers.ModelSerializer):
