@@ -52,7 +52,7 @@ class UploadedImageSerializerEnterprise(serializers.ModelSerializer):
 class UploadedImageSerializerCustom(serializers.ModelSerializer):
     """
     Serializer for the UPloadedImage Model
-    Provides: image, thumbnail200x200, thumbnail400x400, title, description, author, duration, create_date, expiry_date for enterprise group
+    Provides: image, title, thumbnail_custom_image, description, author, duration, create_date, expiry_date for custom group
     """
 
     class Meta:
