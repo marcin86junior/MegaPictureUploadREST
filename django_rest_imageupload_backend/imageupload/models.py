@@ -1,3 +1,5 @@
+import os
+
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
@@ -5,12 +7,9 @@ from django.utils.timezone import datetime, timedelta
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 # modules for picture edition
-from cgitb import text
-from unicodedata import name
 import uuid
 from PIL import Image
-import os
-from venv import create
+
 
 # creates hidden key-name for name of picture
 def scramble_uploaded_filename(instance, filename):
@@ -55,7 +54,7 @@ class UploadedImage(models.Model):
 
     #for Enterprice group
     create_date = models.DateTimeField("Created date", default=timezone.now)
-    duration = models.IntegerField("Link expire time (30-30000 sek)",validators=[MinValueValidator(30), MaxValueValidator(30000)], default='60')
+    duration = models.IntegerField("Link expire time (30-30000 sek)",validators=[MinValueValidator(30), MaxValueValidator(30000)], default='0')
     expiry_link = models.CharField("Link that will expire", max_length=5)
     expiry_date = models.DateTimeField("Expire date", default=timezone.now)
 

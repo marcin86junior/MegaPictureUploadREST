@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3.8
 WORKDIR /code
 ADD . /code
 COPY requirements.txt /code/
