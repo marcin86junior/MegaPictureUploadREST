@@ -60,7 +60,7 @@ class UploadedImage(models.Model):
     expiry_date = models.DateTimeField("Expire date", default=timezone.now)
 
     #for Custom group
-    thumbnail_custom_size = models.CharField("Thumbnail custom size (ex.450x450)", max_length=255, blank=True)
+    thumbnail_custom_size = models.CharField("Thumbnail custom size (e.g.50x50)", max_length=255, blank=True)
     thumbnail_custom_image = models.ImageField("Thumbnail of custom size uploaded image", blank=True)
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
@@ -68,6 +68,14 @@ class UploadedImage(models.Model):
         self.thumbnail200x200 = create_thumbnail(self.image, (200, 200))
         self.thumbnail400x400 = create_thumbnail(self.image, (400, 400))
         self.expiry_date = datetime.now(tz=timezone.utc) + timedelta(seconds=int(self.duration)) # days, seconds, then other fields.
+        if self.thumbnail_custom_size is not None:
+            thumb_size_list = self.thumbnail_custom_size.split("x")
+            if thumb_size_list[0].isdigit() is True and thumb_size_list[1].isdigit() is True:
+                print('OK')
+                self.thumbnail_custom_image = create_thumbnail(self.image, (int(thumb_size_list[0]), int(thumb_size_list[1])))
+            else:
+                print('thumbnail_custom_size is not digit, picture created: 100x100')
+                self.thumbnail_custom_image = create_thumbnail(self.image, (100, 100))
         super(UploadedImage, self).save()
     
     def is_expired(self):
