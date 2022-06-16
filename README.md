@@ -45,7 +45,7 @@ Docker:
 
 	Create new folder "MegaPictureUploadREST" and open it:
 	git clone https://github.com/marcin86junior/MegaPictureUploadREST.git .
-	cd myproject
+	cd django_rest_imageupload_backend\
 	Open Doker Desktop:
 	docker-compose run web python3 manage.py migrate
 	#docker-compose run web python3 manage.py loaddata data.json --app eMenu

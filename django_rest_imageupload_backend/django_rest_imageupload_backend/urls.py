@@ -22,5 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('imageupload_rest.urls'), name='api'),
     path("api-auth/", include("rest_framework.urls")),
-    #path("setup/", include("imageupload.urls")),
+    path("setup/", include("imageupload.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
