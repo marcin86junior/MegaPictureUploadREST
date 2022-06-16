@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.utils import timezone
 from django.utils.timezone import datetime, timedelta
 from django.core.validators import MinValueValidator, MaxValueValidator
 
@@ -48,16 +49,16 @@ class UploadedImage(models.Model):
     title = models.CharField("Title of the uploaded image", max_length=255, default="Unknown Picture")
     description = models.TextField("Description of the uploaded image", default="")
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    create_date = models.DateTimeField("Created date",default=datetime.now)
+    create_date = models.DateTimeField("Created date", default=timezone.now)
     duration = models.IntegerField("Link expire time (30-30000 sek)",validators=[MinValueValidator(30), MaxValueValidator(30000)], default='60')
     expiry_link = models.CharField("Link that will expire", max_length=5)
-    expiry_date = models.DateTimeField("Expire date", default=datetime.now)
+    expiry_date = models.DateTimeField("Expire date", default=timezone.now)
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         # generate and set thumbnail or none
         self.thumbnail200x200 = create_thumbnail(self.image, (200, 200))
         self.thumbnail400x400 = create_thumbnail(self.image, (400, 400))
-        self.expiry_date = datetime.now() + timedelta(seconds=int(self.duration)) # days, seconds, then other fields.
+        self.expiry_date = datetime.now(tz=timezone.utc) + timedelta(seconds=int(self.duration)) # days, seconds, then other fields.
         super(UploadedImage, self).save()
     
     '''

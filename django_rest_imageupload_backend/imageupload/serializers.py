@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from imageupload.models import UploadedImage # Import our UploadedImage model
+from imageupload.models import UploadedImage, scramble_uploaded_filename # Import our UploadedImage model
 
 class UploadedImageSerializerAdmin(serializers.ModelSerializer):
     """
@@ -20,12 +20,11 @@ class UploadedImageSerializerBasic(serializers.ModelSerializer):
     Serializer for the UPloadedImage Model
     Provides the pk, image, thumbnail, title and description
     """
-
     class Meta:
         model = UploadedImage
-        fields = ('image','thumbnail200x200', 'title', 'description') #pk out
+        fields = ('image', 'thumbnail200x200', 'title', 'description') #pk out
         read_only_fields = ('thumbnail200x200', 'author')
-        write_only_fields = ('image')
+        write_only_fields = ('')
 
 class UploadedImageSerializerPremium(serializers.ModelSerializer):
     """
