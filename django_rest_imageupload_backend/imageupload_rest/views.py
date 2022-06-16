@@ -2,7 +2,8 @@ from django.shortcuts import render
 from rest_framework import viewsets, filters
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication
-from imageupload.serializers import UploadedImageSerializerAdmin, UploadedImageSerializerBasic, UploadedImageSerializerPremium, UploadedImageSerializerEnterprise, UploadedImageX
+from imageupload.serializers import UploadedImageSerializerAdmin, UploadedImageSerializerBasic, UploadedImageSerializerPremium
+from imageupload.serializers import  UploadedImageSerializerEnterprise, UploadedImageSerializerCustom, UploadedImageX
 from imageupload.models import UploadedImage # import our model
 
 class UploadedImagesViewSet(viewsets.ModelViewSet):
@@ -15,6 +16,8 @@ class UploadedImagesViewSet(viewsets.ModelViewSet):
             return UploadedImageSerializerPremium
         elif self.request.user.groups.filter(name="Enterprise").exists():
             return UploadedImageSerializerEnterprise
+        elif self.request.user.groups.filter(name="Custom").exists():
+            return UploadedImageSerializerCustom
         elif self.request.user.is_staff:
             return UploadedImageSerializerAdmin
         return UploadedImageX

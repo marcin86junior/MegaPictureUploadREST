@@ -18,6 +18,7 @@ class UploadedImageSerializerBasic(serializers.ModelSerializer):
     Serializer for the UPloadedImage Model
     Provides: thumbnail200x200, title and description for basic group
     """
+
     image = serializers.ImageField(write_only=True)
     class Meta:
         model = UploadedImage
@@ -37,6 +38,18 @@ class UploadedImageSerializerPremium(serializers.ModelSerializer):
         read_only_fields = ('thumbnail200x200', 'thumbnail400x400', 'author')
 
 class UploadedImageSerializerEnterprise(serializers.ModelSerializer):
+    """
+    Serializer for the UPloadedImage Model
+    Provides: image, thumbnail200x200, thumbnail400x400, title, description, author, duration, create_date, expiry_date for enterprise group
+    """
+
+    class Meta:
+        model = UploadedImage
+        fields = ('image', 'thumbnail200x200', 'thumbnail400x400', 'title', 'description', 'author', 'duration', 'create_date', 'expiry_date')
+        read_only_fields = ('thumbnail200x200','thumbnail400x400', 'author', 'create_date', 'expiry_date', 'expiry_link')
+        write_only_fields = ('image')
+
+class UploadedImageSerializerCustom(serializers.ModelSerializer):
     """
     Serializer for the UPloadedImage Model
     Provides: image, thumbnail200x200, thumbnail400x400, title, description, author, duration, create_date, expiry_date for enterprise group

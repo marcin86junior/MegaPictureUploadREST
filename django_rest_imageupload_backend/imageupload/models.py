@@ -44,15 +44,24 @@ class UploadedImage(models.Model):
     Provides a Model which contains an uploaded image aswell as a thumbnail
     """
     image = models.ImageField("Uploaded image", upload_to=scramble_uploaded_filename)
-    thumbnail200x200 = models.ImageField("Thumbnail of uploaded image", blank=True)
-    thumbnail400x400 = models.ImageField("Thumbnail of uploaded image", blank=True)
     title = models.CharField("Title of the uploaded image", max_length=255, default="Unknown Picture")
     description = models.TextField("Description of the uploaded image", default="")
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    #for Basic / Premium / Enterprice / Admin-staff group
+    thumbnail200x200 = models.ImageField("Thumbnail of uploaded image", blank=True)
+    #for Premium group and Enterprice
+    thumbnail400x400 = models.ImageField("Thumbnail of uploaded image", blank=True)
+
+    #for Enterprice group
     create_date = models.DateTimeField("Created date", default=timezone.now)
     duration = models.IntegerField("Link expire time (30-30000 sek)",validators=[MinValueValidator(30), MaxValueValidator(30000)], default='60')
     expiry_link = models.CharField("Link that will expire", max_length=5)
     expiry_date = models.DateTimeField("Expire date", default=timezone.now)
+
+    #for Custom group
+    thumbnail_custom_size = models.CharField("Thumbnail custom size (ex.450x450)", max_length=255, blank=True)
+    thumbnail_custom_image = models.ImageField("Thumbnail of custom size uploaded image", blank=True)
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         # generate and set thumbnail or none
@@ -61,10 +70,8 @@ class UploadedImage(models.Model):
         self.expiry_date = datetime.now(tz=timezone.utc) + timedelta(seconds=int(self.duration)) # days, seconds, then other fields.
         super(UploadedImage, self).save()
     
-    '''
-    @property
     def is_expired(self):
         if datetime.now > self.expiry_date:
             return True
         return False
-    '''
+

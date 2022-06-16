@@ -8,7 +8,7 @@ def create_group(abc):
 create_group('Basic')
 create_group('Premium')
 create_group('Enterprise')
-create_group('CustomXX500x500')
+create_group('Custom')
 
 def create_users(request):
     def create_user(abc, bcd):
@@ -20,9 +20,9 @@ def create_users(request):
     create_user('b1', 'Basic')
     create_user('p2', 'Premium')
     create_user('e3', 'Enterprise')
-    create_user('c4', 'CustomXX500x500')
+    create_user('c4', 'Custom')
     return HttpResponse('<b>User/pass and groups created: </b><br>\
         b1 (pass:123) --> Basic group <br>\
         p2 (pass:123) --> Premium group <br>\
         e3 (pass:123) --> Enterprice group <br>\
-        c4 (pass:123) --> CustomXX500x500 group')
+        c4 (pass:123) --> Custom group')
