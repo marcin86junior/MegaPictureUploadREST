@@ -20,9 +20,7 @@ Installation:
 	python manage.py migrate
 	python manage.py migrate --run-syncdb
 	python .\manage.py runserver
-	python manage.py loaddata group.json
-	python manage.py loaddata users.json
-	python manage.py loaddata data.json
+	python manage.py loaddata group.json users.json data.json
 	python manage.py createsuperuser (marcin/123)
 	python manage.py runserver 
 
@@ -42,9 +40,7 @@ Docker:
 	"Open Doker Desktop"
 	docker-compose run web python3 manage.py migrate
 	docker-compose run web python3 manage.py migrate --run-syncdb
-	docker-compose run web python3 manage.py loaddata group.json
-	docker-compose run web python3 manage.py loaddata users.json
-	docker-compose run web python3 manage.py loaddata data.json
+	docker-compose run web python3 manage.py loaddata group.json users.json data.json
 	docker-compose up
 	Test:
 	docker-compose run web python3 manage.py test

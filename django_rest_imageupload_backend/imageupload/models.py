@@ -70,10 +70,9 @@ class UploadedImage(models.Model):
         if self.thumbnail_custom_size is not None:
             thumb_size_list = self.thumbnail_custom_size.split("x")
             if thumb_size_list[0].isdigit() is True and thumb_size_list[1].isdigit() is True:
-                print('OK')
                 self.thumbnail_custom_image = create_thumbnail(self.image, (int(thumb_size_list[0]), int(thumb_size_list[1])))
             else:
-                print('thumbnail_custom_size is not digit, picture created: 100x100')
+                print('thumbnail_custom_size is not digit so picture created: 100x100')
                 self.thumbnail_custom_image = create_thumbnail(self.image, (100, 100))
         super(UploadedImage, self).save()
     
