@@ -26,11 +26,12 @@ Installation:
 
 Testing:
 
-	python manage.py test imageupload
-	--
-	coverage run --source='.' --omit='*migrations*,*init*,*wsgi*,*asgi*,*urls*,*manage*,*admin*,*apps*,*settings*,*test*,*seriali*' manage.py test eMenu
-	coverage html
-	--
+	python manage.py test
+
+	coverage run --source='.' --omit='*migrations*,*init*,*wsgi*,*asgi*,*urls*,*manage*,*admin*,*apps*,*settings*,*test*,*seriali*' manage.py test
+
+	coverage report (or) coverage html
+
 
 Docker:
 
@@ -52,5 +53,5 @@ Loaddata:
 	p2 / 123 / Premium
 	e3 / 123 / Enterprice
 	c4 / 123 / Custom
-	+ for all users added 2 diffrent pictures
+	+ for all users added 2 diffrent data pictures (without pictures)
 

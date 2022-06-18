@@ -54,7 +54,8 @@ class ModelsTestCase(TestCase):
             description='Test description',
             title='Test name',
             create_date=timezone.now(),
-            image=imagex
+            image=imagex,
+            duration=60,
         )
         uploadedImage.save()
         self.assertEqual(uploadedImage.title, 'Test name')
@@ -86,34 +87,32 @@ class ViewsTestCase(TestCase):
         resp = self.client.get('api/Users/1')
         self.assertEqual(resp.status_code, 404)
 
-'''
+from rest_framework.test import APIRequestFactory
 
-# we can use RequestFactory
-# models.py
-class CardModelTestCase(TestCase):
-    fixtures = ['/imageupload/data.json']
+class ViewsTestCase(TestCase):
+    fixtures = ['data.json', 'users.json', 'group.json']
+
     def setUp(self):
+        self.logged_in = self.client.login(username='b1', password='123')
         login = self.client.login(username='b1', password='123') 
         self.assertTrue(login) 
-        UploadedImage.objects.create(image=(''), title='test',description='test', author = idx, duration='30')
-        print(UploadedImage.objects.all())
-        print(UploadedImage.objects.filter(pk='1'))
+
+    # Using the standard RequestFactory API to create a form POST request
+    factory = APIRequestFactory()
+    request = factory.post('/notes/', {'title': 'new idea'})
+
+    def test_index_loads_properly(self):
+        """The '' page should be 404"""
         request = RequestFactory().get('api/images/')
-        print("get('api/ ................ ", request)
         request = RequestFactory().get('/api/images/?format=json/')
-        print("get('/api/images/?format=json ................ ", request)
-        print("Oto obiekty usera 1: ")
-        Card.objects.create(name="Testowa karta", description="Karta utworzona do testow")
-        Dish.objects.create(name="Danie testowe", description="Danie utowrzone do testów", price='15', preparation_time='15')
-        card = Card.objects.get(name="Testowa karta")
-        dish = Dish.objects.get(name="Danie testowe")
-        CardItems.objects.create(card_id = dish.id, dish_id = dish.id)
-    def test_card_query(self):
-        card = Card.objects.get(name="Testowa karta")
-        self.assertEqual(card.description, 'Karta utworzona do testow')
+        response = self.client.get('your_server_ip:8000')
+        self.assertEqual(response.status_code, 404)
 
+'''
+request = RequestFactory().get('api/images/')
+request = RequestFactory().get('/api/images/?format=json/')
 
-#można też storzyć superusera
+#we can also create super user
 class ViewTests(TestCase):
     """
     Run before each test in class
@@ -137,6 +136,5 @@ class ViewTests(TestCase):
     """
     def test_card_query(self):
         uploadedImage = UploadedImage.objects.all()
-        firstpicture = uploadedImage.objects.get(author=User.objects.get(pk=1))
-        self.assertEqual(card.description, 'Karta utworzona do testow')
+        xxx
 '''
