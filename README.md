@@ -9,16 +9,17 @@ Overview
 --------
 
 * **Freedom to build what you want**  MegaPictureUploadREST is an open-source 
-webiste for upload pictures..............
+webiste for upload pictures. REST technology is used for permission and authorization.
 
-* **Diffrent groups for users**  MegaPictureUploadREST lets you to chose groups
-for clients/users to generate specyfic thumb........ We have 4 groups: ......
+* **Basic group** for newcomers for free 200x200 picture.
 
-* **Special group entrprise** MegaPictureUploadREST is designed to fit a wide
-range of uses 
+* **Premium group** for clients that require orginal pictures, 200x200 and 400x400
 
-* **Cross platform** MegaPictureUploadREST runs on Windows, macOS and Linux
-operating systems.
+* **Special Enterprise group** for clients that require expire links counted in time (30-30000)
+
+* **Special Custom group** for clients that require special size of thumbs e.g. 123x123
+
+* **Cross platform** MegaPictureUploadREST runs on Windows, macOS and Linux operating systems.
 
 Requirements:
 -------------
@@ -84,11 +85,8 @@ Issues
 ------
 
 
-	To report an issue please:
-	- First post to forum to verify the issue; 
-	- Link forum thread to bug tracker ticket and vice-a-versa; 
-	- Use the most updated stable or development versions of FreeCAD; 
-	- Post version info from eg. `Help > About FreeCAD > Copy to clipboard`; 
-	- Post a Step-By-Step explanation on how to recreate the issue; 
-	- Upload an example file to demonstrate problem. 
+	At the moment there are few issuse:
+
+	- docker have differnt PATH so it crash after upload pictures (one test is E), so it's better to copy to local folder and run it
+	- In enterprise and custom group we don't have expire links but we have expire time - Django Expiring Token we will be added in future
 
