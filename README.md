@@ -86,6 +86,8 @@ Issues
 
 	At the moment there are few issuse:
 
-	- docker have differnt PATH so it crash after upload pictures (one test is E), so it's better to copy to local folder and run it
-	- In enterprise and custom group we don't have expire links but we have expire time - Django Expiring Token we will be added in future
+	- docker have differnt PATH so it crash after upload pictures (one test is E), so it's
+	  better to copy to local folder and run it
+	- In enterprise and custom group we don't have expire links but we have expire time.
+	  Django Expiring Token we will be added in future
 
