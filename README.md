@@ -1,4 +1,4 @@
-MegaPictureUploadREST
+MegaPictureUploadREST -
 =====================
 
 ### Your own upload picture website in Django/REST
@@ -8,18 +8,17 @@ MegaPictureUploadREST
 Overview
 --------
 
-* **Freedom to build what you want**  MegaPictureUploadREST is an open-source 
-webiste for upload pictures. REST technology is used for permission and authorization.
+MegaPictureUploadREST is an open-source webiste for upload pictures. 
+Django/REST technology is used for permission and authorization.
+We have few group for specyfic users/clients:
 
-* **Basic group** for newcomers for free 200x200 picture.
+* **Basic group** for newcomers for free 200x200 picture
 
 * **Premium group** for clients that require orginal pictures, 200x200 and 400x400
 
 * **Special Enterprise group** for clients that require expire links counted in time (30-30000)
 
 * **Special Custom group** for clients that require special size of thumbs e.g. 123x123
-
-* **Cross platform** MegaPictureUploadREST runs on Windows, macOS and Linux operating systems.
 
 Requirements:
 -------------
