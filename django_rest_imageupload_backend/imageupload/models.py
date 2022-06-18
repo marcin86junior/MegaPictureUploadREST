@@ -1,12 +1,11 @@
 import os
 
-from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.conf import settings
+from django.db import models
 from django.utils import timezone
 from django.utils.timezone import datetime, timedelta
-from django.core.validators import MinValueValidator, MaxValueValidator
 
-# modules for picture edition
 import uuid
 from PIL import Image
 
@@ -72,7 +71,7 @@ class UploadedImage(models.Model):
             if thumb_size_list[0].isdigit() is True and thumb_size_list[1].isdigit() is True:
                 self.thumbnail_custom_image = create_thumbnail(self.image, (int(thumb_size_list[0]), int(thumb_size_list[1])))
             else:
-                print('thumbnail_custom_size is not digit so picture created: 100x100')
+                #print('thumbnail_custom_size is not digit so picture created: 100x100')
                 self.thumbnail_custom_image = create_thumbnail(self.image, (100, 100))
         super(UploadedImage, self).save()
     

@@ -5,5 +5,3 @@ if thumb_size_list[0].isdigit() is True and thumb_size_list[1].isdigit() is True
     
 else:
     print('thumbnail_custom_size is not digit')
-
-

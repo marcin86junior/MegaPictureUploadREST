@@ -1,18 +1,19 @@
-#python manage.py dumpdata imageupload --indent 4 > data.json
+from .models import UploadedImage
+
+from django.core.files.uploadedfile import SimpleUploadedFile
+from django.contrib.auth.models import User, Group
 from django.test import TestCase
 from django.test import RequestFactory
-from .models import UploadedImage
-from imageupload_rest.views import UploadedImagesViewSet
-from django.contrib.auth.models import User, Group
-from django.template.defaultfilters import slugify
-from imageupload.models import UploadedImage
+from django.utils import timezone
 
+from imageupload.models import UploadedImage
+from imageupload_rest.views import UploadedImagesViewSet
 
 # group test
 class GroupTest(TestCase):
     fixtures = ["group.json"]
 
-    def test_should_create_group(self):
+    def test_of_group_fixtures(self):
         group = Group.objects.get(pk=1)
         self.assertEqual(group.name, "Basic")
 
@@ -20,15 +21,15 @@ class GroupTest(TestCase):
 class UserTest(TestCase):
     fixtures = ["users.json", "group.json"]
 
-    def test_should_load_user_from_fixture(self):
+    def test_of_user_fixturs(self):
         user = User.objects.get(pk=1)
         self.assertEqual(str(user), "b1")
 
-    def test_should_create_user(self):
+    def test_login_basic_user_with_correct_password(self):
        login = self.client.login(username='b1', password='123')
        self.assertTrue(login) 
     
-    def test_should_create_user(self):
+    def test_login_basic_user_with_wrong_password(self):
        login = self.client.login(username='b1', password='1234')
        self.assertFalse(login) 
 
@@ -36,12 +37,27 @@ class UserTest(TestCase):
 class ModelsTestCase(TestCase):
     fixtures = ['data.json', 'users.json', 'group.json']
 
-    def test_uploadedImage_has_slug(self):
-        """Posts are given slugs correctly when saving"""
+    def test_uploadedImage_model_without_piture_file(self):
         login = self.client.login(username='b1', password='123') 
         uploadedImage = UploadedImage.objects.create(author=User.objects.get(id=1), title="My first post")
         uploadedImage.save()
         self.assertEqual(uploadedImage.title, 'My first post')
+
+    def test_uploadedImage_model_with_piture_file(self):
+        login = self.client.login(username='b1', password='123') 
+        try:
+            imagex = SimpleUploadedFile(name='123.jpg', content=open('./abc.jpg', 'rb').read(), content_type='image/jpeg')
+        except:
+            image_path = ('')
+        uploadedImage = UploadedImage.objects.create(
+            author=User.objects.get(id=1),
+            description='Test description',
+            title='Test name',
+            create_date=timezone.now(),
+            image=imagex
+        )
+        uploadedImage.save()
+        self.assertEqual(uploadedImage.title, 'Test name')
 
 # views.py
 class ViewsTestCase(TestCase):
