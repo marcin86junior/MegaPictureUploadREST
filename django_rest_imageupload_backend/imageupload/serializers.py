@@ -1,17 +1,21 @@
 from rest_framework import serializers
 from imageupload.models import UploadedImage
 
+
 class UploadedImageSerializerAdmin(serializers.ModelSerializer):
     """
     Serializer for the UPloadedImage Model
     Provides the all data fields for admin
     """
-    
+
     class Meta:
         model = UploadedImage
-        fields = ('pk', 'image', 'thumbnail200x200', 'thumbnail400x400', 'title', 'description', 'author', 'duration', 'create_date', 'expiry_date')
-        read_only_fields = ('thumbnail200x200','thumbnail400x400', 'author', 'create_date', 'expiry_date', 'expiry_link')
+        fields = ('pk', 'image', 'thumbnail200x200', 'thumbnail400x400', 'title',
+                  'description', 'author', 'duration', 'create_date', 'expiry_date')
+        read_only_fields = ('thumbnail200x200', 'thumbnail400x400',
+                            'author', 'create_date', 'expiry_date', 'expiry_link')
         write_only_fields = ('image')
+
 
 class UploadedImageSerializerBasic(serializers.ModelSerializer):
     """
@@ -20,11 +24,14 @@ class UploadedImageSerializerBasic(serializers.ModelSerializer):
     """
 
     image = serializers.ImageField(write_only=True)
+
     class Meta:
         model = UploadedImage
-        fields = ('image', 'thumbnail200x200', 'title', 'description') #pk out
+        fields = ('image', 'thumbnail200x200',
+                  'title', 'description')  # pk out
         read_only_fields = ('thumbnail200x200', 'author')
         write_only_fields = ('image')
+
 
 class UploadedImageSerializerPremium(serializers.ModelSerializer):
     """
@@ -34,8 +41,10 @@ class UploadedImageSerializerPremium(serializers.ModelSerializer):
 
     class Meta:
         model = UploadedImage
-        fields = ('image', 'thumbnail200x200', 'thumbnail400x400', 'title', 'description')
+        fields = ('image', 'thumbnail200x200',
+                  'thumbnail400x400', 'title', 'description')
         read_only_fields = ('thumbnail200x200', 'thumbnail400x400', 'author')
+
 
 class UploadedImageSerializerEnterprise(serializers.ModelSerializer):
     """
@@ -45,9 +54,12 @@ class UploadedImageSerializerEnterprise(serializers.ModelSerializer):
 
     class Meta:
         model = UploadedImage
-        fields = ('image', 'thumbnail200x200', 'thumbnail400x400', 'title', 'description', 'author', 'duration', 'create_date', 'expiry_date')
-        read_only_fields = ('thumbnail200x200','thumbnail400x400', 'author', 'create_date', 'expiry_date', 'expiry_link')
+        fields = ('image', 'thumbnail200x200', 'thumbnail400x400', 'title',
+                  'description', 'author', 'duration', 'create_date', 'expiry_date')
+        read_only_fields = ('thumbnail200x200', 'thumbnail400x400',
+                            'author', 'create_date', 'expiry_date', 'expiry_link')
         write_only_fields = ('image')
+
 
 class UploadedImageSerializerCustom(serializers.ModelSerializer):
     """
@@ -57,10 +69,13 @@ class UploadedImageSerializerCustom(serializers.ModelSerializer):
 
     class Meta:
         model = UploadedImage
-        fields = ('image', 'title', 'description', 'author', 'duration', 'create_date', 'expiry_date', 'thumbnail_custom_size', 'thumbnail_custom_image')
-        read_only_fields = ( 'author', 'create_date', 'expiry_date', 'expiry_link', 'thumbnail_custom_image')
+        fields = ('image', 'title', 'description', 'author', 'duration', 'create_date',
+                  'expiry_date', 'thumbnail_custom_size', 'thumbnail_custom_image')
+        read_only_fields = ('author', 'create_date', 'expiry_date',
+                            'expiry_link', 'thumbnail_custom_image')
         write_only_fields = ('image')
-    
+
+
 class UploadedImageX(serializers.ModelSerializer):
     """
     Serializer for the UPloadedImage Model
@@ -68,6 +83,6 @@ class UploadedImageX(serializers.ModelSerializer):
     """
 
     class Meta:
-            model = UploadedImage
-            fields = ()
-            read_only_fields = ()
+        model = UploadedImage
+        fields = ()
+        read_only_fields = ()
