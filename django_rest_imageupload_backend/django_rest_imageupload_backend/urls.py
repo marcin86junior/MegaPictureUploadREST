@@ -17,9 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django_expiring_token.views import LoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('imageupload_rest.urls'), name='api'),
     path("api-auth/", include("rest_framework.urls")),
+    path('obtain-token/', LoginView.as_view(), name='obtain-token'),
+    path('custom-url/', include('django_expiring_token.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

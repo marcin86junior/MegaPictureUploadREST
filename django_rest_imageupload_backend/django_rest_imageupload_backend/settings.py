@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'rest_framework',  
     'imageupload_rest',
     'imageupload',
+    'django_expiring_token',
 ]
 
 MIDDLEWARE = [
@@ -135,5 +136,6 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+        'django_expiring_token.authentication.ExpiringTokenAuthentication',
     ]
 }
