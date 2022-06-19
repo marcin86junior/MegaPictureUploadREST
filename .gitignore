@@ -5,9 +5,6 @@ myvenv
 db.sqlite3
 /static
 .DS_Store
-/imageupload_rest
-*.jpg
-*.png
 htmlcov/
 .coverage
 .coverage.*
