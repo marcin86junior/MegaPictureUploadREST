@@ -1,4 +1,4 @@
-MegaPictureUploadREST -
+MegaPictureUploadREST
 =====================
 
 ### Your own upload picture website in Django/REST
@@ -36,6 +36,11 @@ Installation:
 	python -m venv myvenv
 	.\myvenv\Scripts\activate
 	pip install -r requirements.txt
+	
+	Change in setting.py (django_rest_imageupload_backend\django_rest_imageupload_backend)
+	MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'django_rest_imageupload_backend/uploaded_media') #for lockal
+	#MEDIA_ROOT = os.path.join(BASE_DIR, 'uploaded_media') #for Docker
+
 	cd django_rest_imageupload_backend\
 	python manage.py migrate
 	python manage.py migrate --run-syncdb
