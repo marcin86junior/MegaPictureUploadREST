@@ -44,6 +44,7 @@ Installation:
 	python manage.py migrate --run-syncdb
 	python manage.py loaddata group.json users.json data.json
 	python .\manage.py runserver
+	http://127.0.0.1:8000/api/
 	*python manage.py createsuperuser (marcin/123)
 
 
@@ -66,6 +67,7 @@ Docker:
 	docker-compose run web python3 manage.py migrate --run-syncdb
 	docker-compose run web python3 manage.py loaddata group.json users.json data.json
 	docker-compose up
+	http://127.0.0.1:8000/api/
 	Test:
 	docker-compose run web python3 manage.py test
 
@@ -95,4 +97,12 @@ Issues
 	- docker should have migrations in entrypoint.sh (almost fixed)
 	- missing some view test (low coverage)
 
+	Function in the dev/testing phase - token generator:
 
+	http://127.0.0.1:8000/obtain-token/
+	log-in: b1 / pass: 123
+	-> create token
+	http://127.0.0.1:8000/custom-url/login/
+	log-in: b1 / pass: 123
+	-> POST
+	We have: list of tokens of user b1
