@@ -1,10 +1,9 @@
-from django.shortcuts import render
-from rest_framework import viewsets, filters
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.authentication import SessionAuthentication
+from rest_framework import viewsets
+
 from imageupload.serializers import UploadedImageSerializerAdmin, UploadedImageSerializerBasic, UploadedImageSerializerPremium
 from imageupload.serializers import  UploadedImageSerializerEnterprise, UploadedImageSerializerCustom, UploadedImageX
 from imageupload.models import UploadedImage # import our model
+
 
 class UploadedImagesViewSet(viewsets.ModelViewSet):
 
