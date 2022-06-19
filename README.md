@@ -1,16 +1,14 @@
 MegaPictureUploadREST
 =====================
 
-### Your own upload picture website in Django/REST
-
 ![alt text](http://marcin86.pythonanywhere.com/static/MegaUploadpic.PNG)
 
 Overview
 --------
 
-MegaPictureUploadREST is an open-source webiste for upload pictures. 
+MegaPictureUploadREST is an open-source website for uploading pictures. 
 Django/REST technology is used for permission and authorization.
-We have few group for specyfic users/clients:
+We have few group for specific users/clients:
 
 * **Basic group** for newcomers for free 200x200 picture
 
@@ -77,12 +75,12 @@ Fixtures
 
 
 	Data included in fixtures:
-	User / Password / Group:
-	b1 / 123 / Basic
-	p2 / 123 / Premium
-	e3 / 123 / Enterprice
-	c4 / 123 / Custom
-	+ for all users added 2 diffrent data pictures (without pictures)
+
+	User / Password / Assigned group / Added pictures to model
+	b1 / 123 / Basic / 2
+	p2 / 123 / Premium / 2
+	e3 / 123 / Enterprice/ 2 
+	c4 / 123 / Custom/ 2
 
 
 Issues
@@ -91,8 +89,10 @@ Issues
 
 	At the moment there are few issuse:
 
-	- docker have differnt PATH so it crash after upload pictures (one test is E), so it's
-	  better to copy to local folder and run it
-	- In enterprise and custom group we don't have expire links but we have expire time.
-	  Django Expiring Token we will be added in future
+	- In enterprise and custom group we don't have expire tokens yet. We can check only
+	  expire date / created date. This function will be added shortly.
+	- docker have differnt main PATH (/code/) - should be corrected in web: / media
+	- docker should have migrations in entrypoint.sh (almost fixed)
+	- missing some view test (low coverage)
+
 
