@@ -127,8 +127,8 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 import os
-MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'django_rest_imageupload_backend/uploaded_media')
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'uploaded_media') #for Docker
+#MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'django_rest_imageupload_backend/uploaded_media') #for lockal
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploaded_media') #for Docker
 MEDIA_URL = '/media/'
 
 REST_FRAMEWORK = {
