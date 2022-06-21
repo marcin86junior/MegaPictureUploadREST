@@ -5,9 +5,10 @@ myvenv
 db.sqlite3
 /static
 .DS_Store
-
+*.jpg
 htmlcov/
 .coverage
 .coverage.*
 coverage.xml
 *.cover
+/uploa
