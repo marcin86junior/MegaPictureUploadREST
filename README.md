@@ -63,9 +63,7 @@ Docker:
 	git clone https://github.com/marcin86junior/MegaPictureUploadREST.git .
 	cd django_rest_imageupload_backend\
 	"Open Doker Desktop"
-	docker-compose run web python3 manage.py migrate
-	docker-compose run web python3 manage.py migrate --run-syncdb
-	docker-compose run web python3 manage.py loaddata group.json users.json data.json
+	format file in \django_rest_imageupload_backend\docker-entrypoint.sh    CRLF->LF
 	docker-compose up
 	http://127.0.0.1:8000/api/
 	Test:
