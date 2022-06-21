@@ -9,10 +9,8 @@ services:
       - POSTGRES_PASSWORD=postgres
   web:
     build: .
-    entrypoint: ./docker-entrypoint.sh
     command: 
-            "python manage.py migrate &&
-            python manage.py runserver 0.0.0.0:8000 --noreload"
+          python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code/
     ports:
